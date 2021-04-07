@@ -1,22 +1,17 @@
 <template>
-	<div>
-
-		<div
-			v-for="component  in components"
-			:key="component.id"
-		>
-			{{component.props.text}}
-		</div>
-
-		<validate-from>
-			<validate-input
-				:rules="inputRules"
-				v-model:value="inputValueRef"
-			></validate-input>
-			{{inputValueRef}}
-		</validate-from>
-
-	</div>
+  <div>
+    <div v-for="component in components" :key="component.id">
+      {{ component.props.text }}
+    </div>
+    <div class="css">css</div>
+    <validate-from>
+      <validate-input
+        :rules="inputRules"
+        v-model:value="inputValueRef"
+      ></validate-input>
+      {{ inputValueRef }}
+    </validate-from>
+  </div>
 </template>
 
 <script lang="ts">
@@ -27,32 +22,38 @@ import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
 
 export default defineComponent({
-	name: "Home",
-	components: {
-		ValidateInput,
-		ValidateFrom,
-	},
-	setup() {
-		const store = useStore<GlobalDataProps>();
-		const components = computed(() => {
-			return store.state.editor.components;
-		});
-		console.log(components.value);
-		const inputValueRef = ref("wmc");
-		const inputRules: RulesProp = [
-			{
-				type: "required",
-				message: "用户名不能为空",
-			},
-		];
-		return {
-			inputValueRef,
-			inputRules,
-			components,
-		};
-	},
+  name: "Home",
+  components: {
+    ValidateInput,
+    ValidateFrom,
+  },
+  setup() {
+    const store = useStore<GlobalDataProps>();
+    const components = computed(() => {
+      return store.state.editor.components;
+    });
+    console.log(components.value);
+    const inputValueRef = ref("wmc");
+    const inputRules: RulesProp = [
+      {
+        type: "required",
+        message: "用户名不能为空",
+      },
+    ];
+    return {
+      inputValueRef,
+      inputRules,
+      components,
+    };
+  },
 });
 </script>
 
-<style>
+<style lang="scss">
+.css {
+  width: 200px;
+  height: 200px;
+  background-color: aquamarine;
+  @include box-center;
+}
 </style>
