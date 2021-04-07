@@ -6,3 +6,4 @@ const app = createApp(App)//根据APP组件创建单页应用
 
 app.use(router).use(store)
 app.mount('#app')
+

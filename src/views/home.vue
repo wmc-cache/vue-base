@@ -1,10 +1,5 @@
 <template>
 	<div>
-		<validate-input
-			:rules="inputRules"
-			v-model:value="inputValueRef"
-		></validate-input>
-		{{inputValueRef}}
 
 		<div
 			v-for="component  in components"
@@ -13,18 +8,29 @@
 			{{component.props.text}}
 		</div>
 
+		<validate-from>
+			<validate-input
+				:rules="inputRules"
+				v-model:value="inputValueRef"
+			></validate-input>
+			{{inputValueRef}}
+		</validate-from>
+
 	</div>
 </template>
 
 <script lang="ts">
+import ValidateFrom from "../components/ValidateFrom.vue";
 import ValidateInput, { RulesProp } from "../components/ValidateInput.vue";
 import { defineComponent, ref, computed } from "vue";
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
+
 export default defineComponent({
 	name: "Home",
 	components: {
-		ValidateInput
+		ValidateInput,
+		ValidateFrom,
 	},
 	setup() {
 		const store = useStore<GlobalDataProps>();
@@ -36,15 +42,15 @@ export default defineComponent({
 		const inputRules: RulesProp = [
 			{
 				type: "required",
-				message: "用户名不能为空"
-			}
+				message: "用户名不能为空",
+			},
 		];
 		return {
 			inputValueRef,
 			inputRules,
-			components
+			components,
 		};
-	}
+	},
 });
 </script>
 
