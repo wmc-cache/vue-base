@@ -5,7 +5,7 @@ module.exports = {
             scss: {
                 prependData: `
 					@import "@/style/gobal.scss";
-        `
+                    `
             }
         }
     },
