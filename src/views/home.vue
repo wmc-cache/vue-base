@@ -53,7 +53,7 @@ export default defineComponent({
 .css {
   width: 200px;
   height: 200px;
-  background-color: aquamarine;
+  background-color: $color-primary;
   @include box-center;
 }
 </style>
