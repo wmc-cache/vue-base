@@ -11,6 +11,7 @@
       ></validate-input>
       {{ inputValueRef }}
     </validate-from>
+    <a href="">123</a>
   </div>
 </template>
 
