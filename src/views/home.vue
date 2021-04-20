@@ -1,5 +1,6 @@
 <template>
 	<div>
+		{{position}}
 		<message message="吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成"></message>
 		<div
 			v-for="component in components"
@@ -27,6 +28,7 @@ import ValidateInput, { RulesProp } from "../components/ValidateInput.vue";
 import { defineComponent, ref, computed } from "vue";
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
+import useMousePosition from "../hooks/useMousePosition";
 
 export default defineComponent({
 	name: "Home",
@@ -36,6 +38,8 @@ export default defineComponent({
 		Message,
 	},
 	setup() {
+		const position = useMousePosition();
+
 		const store = useStore<GlobalDataProps>();
 		const components = computed(() => {
 			return store.state.editor.components;
@@ -52,6 +56,7 @@ export default defineComponent({
 			inputValueRef,
 			inputRules,
 			components,
+			position,
 		};
 	},
 });
