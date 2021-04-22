@@ -1,6 +1,9 @@
 <template>
 	<div>
-		{{position}}
+		<div>
+			{{position}}
+		</div>
+
 		<message message="吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成"></message>
 		<div
 			v-for="component in components"
@@ -39,7 +42,6 @@ export default defineComponent({
 	},
 	setup() {
 		const position = useMousePosition();
-
 		const store = useStore<GlobalDataProps>();
 		const components = computed(() => {
 			return store.state.editor.components;

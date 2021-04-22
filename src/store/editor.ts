@@ -6,6 +6,7 @@ export interface ComponentData {
   props: { [key: string]: any };
   id: string;
   name: string;
+  tag: string;
 }
 
 export interface EditorProps {
@@ -14,8 +15,8 @@ export interface EditorProps {
 }
 
 export const testComponents: ComponentData[] = [
-  { id: "1", name: "w-text", props: { text: "hello1", fontSize: "20px" } },
-  { id: "2", name: "w-text", props: { text: "hello2", fontSize: "30px" } }
+  { id: "1", tag: "div", name: "w-text", props: { text: "hello1", fontSize: "20px" } },
+  { id: "2", tag: "a", name: "w-text", props: { text: "hello2", fontSize: "30px" } }
 ]
 
 
