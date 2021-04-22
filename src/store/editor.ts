@@ -16,7 +16,7 @@ export interface EditorProps {
 
 export const testComponents: ComponentData[] = [
   { id: "1", tag: "div", name: "w-text", props: { text: "hello1", fontSize: "20px" } },
-  { id: "2", tag: "a", name: "w-text", props: { text: "hello2", fontSize: "30px" } }
+  { id: "2", tag: "h1", name: "w-text", props: { text: "hello2", fontSize: "30px" } }
 ]
 
 

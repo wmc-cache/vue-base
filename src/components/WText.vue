@@ -13,22 +13,25 @@
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 import { pick } from "lodash-es";
+import {
+	textDefaultProps,
+	transformToComponentProps,
+	textStylePropNames,
+} from "../../defaultProps";
+
+const defaultProps = transformToComponentProps(textDefaultProps);
+console.log(defaultProps);
 export default defineComponent({
 	name: "w-text",
 	props: {
-		text: {
-			type: String,
-		},
-		fontSize: {
-			type: String,
-		},
 		tag: {
 			type: String,
 			default: "div",
 		},
+		...defaultProps,
 	},
 	setup(props) {
-		const styleProps = computed(() => pick(props, ["fontSize"]));
+		const styleProps = computed(() => pick(props, textStylePropNames));
 
 		return {
 			styleProps,
