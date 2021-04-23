@@ -1,10 +1,8 @@
 import { mapValues, without } from "lodash-es"
 
 export const commonDefaultProps = {
-  actionType: 1,
+  actionType: "url",
   url: ""
-
-
 }
 
 
