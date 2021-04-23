@@ -21,6 +21,7 @@
 			{{ inputValueRef }}
 		</validate-from>
 		<a href="">123</a>
+		<input type="text">
 	</div>
 </template>
 
