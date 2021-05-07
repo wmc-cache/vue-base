@@ -10,3 +10,4 @@ console.log(process.env)
 app.use(router).use(store)
 app.mount('#app')
 
+

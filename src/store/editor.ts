@@ -14,7 +14,7 @@ export interface ComponentData {
   props: Partial<TextComponentProps & ImageComponentProps>;
   // id，uuid v4 生成
   id: string;
-  // 业务组件库名称 l-text，l-image 等等 
+  // 业务组件库名称 w-text，w-image 等等 
   name: 'w-text' | 'w-image';
 }
 export const testComponents: ComponentData[] = [
@@ -38,6 +38,7 @@ const editor: Module<EditorProps, GlobalDataProps> = {
 
   },
   getters: {
+    //获取到正被激活的组件
     getCurrentElement: (state) => {
       return state.components.find((component) => component.id === state.currentElement)
     }
