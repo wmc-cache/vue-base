@@ -4,10 +4,14 @@
 			{{ position }}
 		</div>
 		<l-text text="wmc"></l-text>
-		<w-input
-			:rules="inputRules"
-			v-model:value="inputValueRef"
-		></w-input>
+		<l-image></l-image>
+		<w-from>
+			<w-input
+				:rules="inputRules"
+				v-model:value="inputValueRef"
+			></w-input>
+		</w-from>
+
 		<input type="color" />
 		<message message="吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成"></message>
 		<div
