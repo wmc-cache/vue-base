@@ -3,8 +3,7 @@
 		<div>
 			{{ position }}
 		</div>
-		<l-text text="wmc"></l-text>
-		<l-image></l-image>
+
 		<w-form>
 			<w-input
 				:rules="inputRules"
