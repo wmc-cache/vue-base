@@ -6,7 +6,6 @@ import "normalize.css/normalize.css"
 import "./style/index.scss"
 
 import wmcComponents from "wmc-components"
-
 import "wmc-components/dist/bundle.css"
 
 const app = createApp(App)//根据APP组件创建单页应用

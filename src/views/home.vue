@@ -5,13 +5,12 @@
 		</div>
 		<l-text text="wmc"></l-text>
 		<l-image></l-image>
-		<w-from>
+		<w-form>
 			<w-input
 				:rules="inputRules"
 				v-model:value="inputValueRef"
 			></w-input>
-		</w-from>
-
+		</w-form>
 		<input type="color" />
 		<message message="吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成"></message>
 		<div
@@ -22,12 +21,12 @@
 		</div>
 		<div class="css">css</div>
 
-		<validate-from>
+		<validate-from @form-submit-result="formSubmitResult">
 			<validate-input
+				class="form-input"
 				:rules="inputRules"
 				v-model:value="inputValueRef"
 			></validate-input>
-			{{ inputValueRef }}
 		</validate-from>
 		<a href="">123</a>
 		<input type="text" />
@@ -56,12 +55,19 @@ export default defineComponent({
 		const components = computed(() => {
 			return store.state.editor.components;
 		});
-		console.log(components.value);
+		const formSubmitResult = (result: boolean) => {
+			console.log(result);
+		};
+		//console.log(components.value);
 		const inputValueRef = ref("wmc");
 		const inputRules: RulesProp = [
 			{
 				type: "required",
 				message: "用户名不能为空",
+			},
+			{
+				type: "range",
+				min: { length: 6, message: "用户名不能少于六位" },
 			},
 		];
 		return {
@@ -69,6 +75,7 @@ export default defineComponent({
 			inputRules,
 			components,
 			position,
+			formSubmitResult,
 		};
 	},
 });
@@ -80,5 +87,10 @@ export default defineComponent({
 	height: 200px;
 	background-color: $color-primary;
 	@include box-center;
+}
+.form-input {
+	border: 1px solid #fff;
+	border-radius: 0;
+	width: 298px;
 }
 </style>
