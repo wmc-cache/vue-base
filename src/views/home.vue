@@ -20,22 +20,12 @@
 		</div>
 		<div class="css">css</div>
 
-		<validate-from @form-submit-result="formSubmitResult">
-			<validate-input
-				class="form-input"
-				:rules="inputRules"
-				v-model:value="inputValueRef"
-			></validate-input>
-		</validate-from>
-		<a href="">123</a>
-		<input type="text" />
 	</div>
 </template>
 
 <script lang="ts">
 import Message from "../components/Message.vue";
-import ValidateFrom from "../components/ValidateFrom.vue";
-import ValidateInput, { RulesProp } from "../components/ValidateInput.vue";
+
 import { defineComponent, ref, computed } from "vue";
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
@@ -44,8 +34,6 @@ import useMousePosition from "../hooks/useMousePosition";
 export default defineComponent({
 	name: "Home",
 	components: {
-		ValidateInput,
-		ValidateFrom,
 		Message,
 	},
 	setup() {
@@ -59,7 +47,7 @@ export default defineComponent({
 		};
 		//console.log(components.value);
 		const inputValueRef = ref("wmc");
-		const inputRules: RulesProp = [
+		const inputRules = [
 			{
 				type: "required",
 				message: "用户名不能为空",
