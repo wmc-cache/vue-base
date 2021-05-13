@@ -1,4 +1,6 @@
 import { mapValues, without } from 'lodash-es'
+
+//公共属性类型
 export interface CommonComponentProps {
   // actions
   actionType: string;
@@ -82,8 +84,11 @@ export const imageDefaultProps: ImageComponentProps = {
   src: 'test.url',
   ...commonDefaultProps
 }
+
 export const textStylePropNames = without(Object.keys(textDefaultProps), 'actionType', 'url', 'text')
 export const imageStylePropsNames = without(Object.keys(imageDefaultProps), 'src')
+
+//
 export const transformToComponentProps = <T extends {}>(props: T) => {
   return mapValues(props, (item) => {
     return {
