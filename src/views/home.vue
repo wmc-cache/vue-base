@@ -25,12 +25,10 @@
 
 <script lang="ts">
 import Message from "../components/Message.vue";
-
 import { defineComponent, ref, computed } from "vue";
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
 import useMousePosition from "../hooks/useMousePosition";
-
 export default defineComponent({
 	name: "Home",
 	components: {

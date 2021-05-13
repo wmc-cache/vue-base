@@ -1,3 +1,4 @@
+
 <template>
 	<div class="content">
 		<div>
@@ -22,7 +23,11 @@
 		</div>
 
 		<div class="right">
-
+			<props-table
+				v-if="currentElement && currentElement.props"
+				:props="currentElement.props"
+				@change="handleChange"
+			></props-table>
 			<pre>
         {{ currentElement && currentElement.props }}
       </pre>
@@ -39,12 +44,14 @@ import WText from "@/components/WText.vue";
 import { defaultTextTemplates } from "../../defaultTemplates";
 import { ComponentData } from "@/store/editor";
 import EditWrapper from "../components/EditWrapper.vue";
+import PropsTable from "../components/PropsTable.vue";
 export default defineComponent({
 	name: "Editor",
 	components: {
 		WText,
 		ComponentsList,
 		EditWrapper,
+		PropsTable,
 	},
 	setup() {
 		const store = useStore<GlobalDataProps>();
@@ -60,6 +67,10 @@ export default defineComponent({
 		const setActive = (id: string) => {
 			store.commit("setActive", id);
 		};
+		const handleChange = (e: any) => {
+			console.log("event", e);
+			store.commit("updateComponent", e);
+		};
 
 		return {
 			components,
@@ -67,6 +78,7 @@ export default defineComponent({
 			currentElement,
 			addItem,
 			setActive,
+			handleChange,
 		};
 	},
 });

@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "ant-design-vue": "^2.0.0-rc.5",
     "core-js": "^3.6.5",
     "lodash-es": "^4.17.21",
     "mitt": "^2.1.0",
