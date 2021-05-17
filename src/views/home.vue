@@ -10,6 +10,7 @@
 				v-model:value="inputValueRef"
 			></w-input>
 		</w-form>
+
 		<input type="color" />
 		<message message="吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成"></message>
 		<div
@@ -18,7 +19,7 @@
 		>
 			{{ component.props.text }}
 		</div>
-		<div class="css">css</div>
+		<!-- <div class="css">css</div> -->
 
 	</div>
 </template>
@@ -43,7 +44,6 @@ export default defineComponent({
 		const formSubmitResult = (result: boolean) => {
 			console.log(result);
 		};
-		//console.log(components.value);
 		const inputValueRef = ref("wmc");
 		const inputRules = [
 			{
@@ -53,6 +53,21 @@ export default defineComponent({
 			{
 				type: "range",
 				min: { length: 6, message: "用户名不能少于六位" },
+			},
+			{
+				type: "email",
+				message: "邮箱格式不正确",
+			},
+			{
+				type: "custom",
+				validator: () => {
+					if (inputValueRef.value == "1006004868@qq.com") {
+						return true;
+					} else {
+						return false;
+					}
+				},
+				message: "不是我的邮箱",
 			},
 		];
 		return {
