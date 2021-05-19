@@ -24,7 +24,7 @@ const fontFamilyArr = [
 const fontFamilyOptions = fontFamilyArr.map(font => {
   return {
     value: font.value,
-    text: <span style={{ fontFamily: font.value}}>{font.text}</span> as VNode
+    text: <span style={{ fontFamily: font.value }}>{font.text}</span> as VNode
   }
 })
 const pxToNumberHandler: PropToForm = {
@@ -32,6 +32,8 @@ const pxToNumberHandler: PropToForm = {
   initalTransform: (v: string) => parseInt(v),
   afterTransform: (e: number) => e ? `${e}px` : '',
 }
+
+//
 export const mapPropsToForms: PropsToForms = {
   text: {
     text: '文本',
