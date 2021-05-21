@@ -32,6 +32,8 @@ export default defineComponent({
 	},
 	setup(props, context) {
 		const onItemClick = (props: TextComponentProps) => {
+			props = JSON.parse(JSON.stringify(props));
+
 			const componentData: ComponentData = {
 				name: "w-text",
 				id: uuidv4(),

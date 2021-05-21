@@ -1,7 +1,7 @@
 
 <template>
 	<div class="content">
-		<div>
+		<div class="left">
 			<components-list
 				@onItemClick="addItem"
 				:list="defaultTextTemplates"
@@ -88,9 +88,18 @@ export default defineComponent({
 .content {
 	display: flex;
 }
+.left {
+	width: 20vw;
+	background-color: aliceblue;
+}
 .middle {
 	display: flex;
 	flex-direction: column;
-	margin-left: 100px;
+	width: 50vw;
+	background-color: aqua;
+}
+.right {
+	width: 30vw;
+	background-color: bisque;
 }
 </style>
