@@ -106,6 +106,7 @@ export default defineComponent({
 }
 .label {
   width: 28%;
+ 
 }
 .prop-component {
   width: 70%;

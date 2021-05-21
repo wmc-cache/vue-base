@@ -13,6 +13,7 @@
 				v-for="component in components"
 				:key="component.id"
 				:id="component.id"
+				:props="component.props"
 				:active="component.id === (currentElement && currentElement.id)"
 			>
 				<component
@@ -93,6 +94,7 @@ export default defineComponent({
 	background-color: aliceblue;
 }
 .middle {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	width: 50vw;

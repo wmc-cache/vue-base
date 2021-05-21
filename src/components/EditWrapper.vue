@@ -1,11 +1,16 @@
 <template>
-  <div class="edit-wrapper" @click="onItemClick(id)" :class="{ active: active }">
+  <div class="edit-wrapper" 
+  @click="onItemClick(id)" 
+  :style="styles"
+  :class="{ active: active }">
+  
     <slot></slot>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import {pick}  from "lodash-es"
+import { defineComponent,computed } from 'vue'
 export default defineComponent({
   props: {
     id: {
@@ -15,15 +20,20 @@ export default defineComponent({
     active: {
       type: Boolean,
       default: false
+    },
+    props:{
+      type:Object
     }
   },
   emits: ['set-active'],
   setup(props, context) {
+    const styles = computed(()=>pick(props.props,["position","top","left","width","height"]))
     const onItemClick = (id: string) => {
       context.emit('set-active', id)
     }
     return {
-      onItemClick
+      onItemClick,
+      styles
     }
   }
 })
@@ -35,6 +45,9 @@ export default defineComponent({
   cursor: pointer;
   border: 1px solid transparent;
   user-select: none;
+}
+.edit-wrapper > *{
+  position: static !important;
 }
 .edit-wrapper:hover {
   border: 1px dashed #ccc;
