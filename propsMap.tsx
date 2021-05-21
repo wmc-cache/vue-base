@@ -8,6 +8,7 @@ export interface PropToForm {
   options?: { text: string | VNode; value: any }[];
   initalTransform?: (v: any) => any;
   afterTransform?: (v: any) => any;
+  afterTransform2?: (v: any) => any;
   valueProp?: string;
   eventName?: string;
 }
@@ -32,6 +33,7 @@ const pxToNumberHandler: PropToForm = {
   component: 'a-input-number',
   initalTransform: (v: string) => parseInt(v),
   afterTransform: (e: number) => e ? `${e}px` : '',
+  afterTransform2: (e: number) => e ? `${e}%` : '',
 }
 
 //
@@ -49,7 +51,7 @@ export const mapPropsToForms: PropsToForms = {
   lineHeight: {
     text: '行高',
     component: 'a-slider',
-    extraProps: { min: 0, max: 3, step: 0.1 },
+    extraProps: { min: 0, max: 100, step: 10 },
     initalTransform: (v: string) => parseFloat(v),
     afterTransform: (e: number) => e.toString(),
   },
