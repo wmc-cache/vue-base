@@ -3,9 +3,13 @@
 		<div>
 			{{ position }}
 		</div>
-
+		<div
+			style="width:300px;height:300px"
+			id="container"
+		></div>
 		<w-form>
 			<w-input
+				:errorMessageStyle="errorMessageStyle"
 				:rules="inputRules"
 				v-model:value="inputValueRef"
 			></w-input>
@@ -25,6 +29,8 @@
 </template>
 
 <script lang="ts">
+const errorMessageStyle = { color: "red", fontSize: "12px" };
+import AMapLoader from "@amap/amap-jsapi-loader";
 import Message from "../components/Message.vue";
 import { defineComponent, ref, computed } from "vue";
 import { useStore } from "vuex";
@@ -36,6 +42,22 @@ export default defineComponent({
 		Message,
 	},
 	setup() {
+		AMapLoader.load({
+			key: "2b4552a40e781712b959acbc94c917c9", // 申请好的Web端开发者Key，首次调用 load 时必填
+			version: "1.4.15", // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
+			plugins: [], // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+			AMapUI: {
+				version: "1.1",
+				plugins: [],
+			},
+			Loca: {},
+		})
+			.then((AMap) => {
+				const map = new AMap.Map("container");
+			})
+			.catch((e) => {
+				console.log(e);
+			});
 		const position = useMousePosition();
 		const store = useStore<GlobalDataProps>();
 		const components = computed(() => {
@@ -76,6 +98,7 @@ export default defineComponent({
 			components,
 			position,
 			formSubmitResult,
+			errorMessageStyle,
 		};
 	},
 });
