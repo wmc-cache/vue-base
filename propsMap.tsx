@@ -12,6 +12,7 @@ export interface PropToForm {
   eventName?: string;
 }
 
+
 export type PropsToForms = {
   [P in keyof TextComponentProps]?: PropToForm
 }
@@ -79,5 +80,9 @@ export const mapPropsToForms: PropsToForms = {
   color: {
     component: 'color-picker',
     text: '字体颜色'
+  },
+  backgroundColor: {
+    component: 'color-picker',
+    text: '背景颜色'
   }
 }
