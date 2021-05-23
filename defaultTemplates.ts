@@ -7,14 +7,14 @@ export const defaultTextTemplates = [
     tag: 'div',
     fontSize: '12px',
     textAlign: 'center',
-    color: "#000",
-    backgroundColor: "#ccc",
+    color: "#000000",
+    backgroundColor: "#cccccc",
     width: "100px",
     height: "100px",
     borderRadius: '2px',
     fontFamily: "无",
-    left:"10px",
-    top:"0px",
+    left: "10px",
+    top: "0px",
     position: "absolute"
 
   }
