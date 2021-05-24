@@ -12,7 +12,10 @@ export const defaultTextTemplates = [
     width: "100px",
     height: "100px",
     borderRadius: '2px',
-    fontFamily: "无"
+    fontFamily: "无",
+    position: "absolute",
+    left: "0",
+    top: "0"
 
 
   }

@@ -14,6 +14,7 @@
 				:key="component.id"
 				:id="component.id"
 				:active="component.id === (currentElement && currentElement.id)"
+				:props="component.props"
 			>
 				<component
 					:is="component.name"
@@ -93,6 +94,7 @@ export default defineComponent({
 	background-color: aliceblue;
 }
 .middle {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	width: 50vw;
