@@ -13,6 +13,7 @@ export interface PropToForm {
   eventName?: string;
 }
 
+
 export type PropsToForms = {
   [P in keyof TextComponentProps]?: PropToForm
 }
@@ -25,7 +26,7 @@ const fontFamilyArr = [
 const fontFamilyOptions = fontFamilyArr.map(font => {
   return {
     value: font.value,
-    text: <span style={{ fontFamily: font.value}}>{font.text}</span> as VNode
+    text: <span style={{ fontFamily: font.value }}>{font.text}</span> as VNode
   }
 })
 const pxToNumberHandler: PropToForm = {
@@ -34,6 +35,8 @@ const pxToNumberHandler: PropToForm = {
   afterTransform: (e: number) => e ? `${e}px` : '',
   afterTransform2: (e: number) => e ? `${e}%` : '',
 }
+
+//
 export const mapPropsToForms: PropsToForms = {
   text: {
     text: '文本',
@@ -81,8 +84,7 @@ export const mapPropsToForms: PropsToForms = {
     text: '字体颜色'
   },
   backgroundColor: {
-     component: 'color-picker',
+    component: 'color-picker',
     text: '背景颜色'
-  },
- 
+  }
 }

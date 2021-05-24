@@ -7,14 +7,18 @@
 				:list="defaultTextTemplates"
 			></components-list>
 		</div>
-		<div class="middle">
+		<div
+			id="content"
+			class="middle"
+		>
 			<edit-wrapper
+				@update-position="updataPosition"
 				@setActive="setActive"
 				v-for="component in components"
 				:key="component.id"
 				:id="component.id"
-				:active="component.id === (currentElement && currentElement.id)"
 				:props="component.props"
+				:active="component.id === (currentElement && currentElement.id)"
 			>
 				<component
 					:is="component.name"
@@ -72,6 +76,16 @@ export default defineComponent({
 			console.log("event", e);
 			store.commit("updateComponent", e);
 		};
+		const updataPosition = (data: {
+			left: number;
+			top: number;
+			id: string;
+		}) => {
+			const { left, top, id } = data;
+			console.log(left, top);
+			store.commit("updateComponent", { key: "left", value: left + "px", id });
+			store.commit("updateComponent", { key: "top", value: top + "px", id });
+		};
 
 		return {
 			components,
@@ -80,6 +94,7 @@ export default defineComponent({
 			addItem,
 			setActive,
 			handleChange,
+			updataPosition,
 		};
 	},
 });
