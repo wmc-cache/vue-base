@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-const errorMessageStyle = { color: "red", fontSize: "12px" };
+const errorMessageStyle = { color: "yellow", fontSize: "12px" };
 import AMapLoader from "@amap/amap-jsapi-loader";
 import Message from "../components/Message.vue";
 import { defineComponent, ref, computed } from "vue";
