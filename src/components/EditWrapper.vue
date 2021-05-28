@@ -96,7 +96,7 @@ export default defineComponent({
 			document.addEventListener("mousemove", handleMove);
 			document.addEventListener("mouseup", handleMoveUp);
 		};
-		//
+		//控制形状大小
 		const control = () => {
 			const currentElement = editWrapper.value;
 

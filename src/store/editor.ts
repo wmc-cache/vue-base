@@ -8,6 +8,7 @@ export interface EditorProps {
   // 当前编辑的是哪个元素，uuid
   currentElement: string;
   // 当然最后保存的时候还有有一些项目信息，这里并没有写出，等做到的时候再补充
+  copiedComponent?: ComponentData;
 }
 export interface ComponentData {
   // 这个元素的 属性，属性请详见下面
@@ -39,6 +40,12 @@ const editor: Module<EditorProps, GlobalDataProps> = {
       const updatedComponent = state.components.find((component) => component.id === state.currentElement)
       if (updatedComponent) {
         updatedComponent.props[key as keyof TextComponentProps] = value
+      }
+    },
+    copyComponent(state, id: string) {
+      const copiedComponent = state.components.find((component) => component.id === id)
+      if (copiedComponent) {
+        state.copiedComponent = copiedComponent
       }
     }
 

@@ -51,6 +51,7 @@ import { defaultTextTemplates } from "../../defaultTemplates";
 import { ComponentData } from "@/store/editor";
 import EditWrapper from "../components/EditWrapper.vue";
 import PropsTable from "../components/PropsTable.vue";
+import initHotKeys from "../plugins/HotKeys";
 export default defineComponent({
 	name: "Editor",
 	components: {
@@ -60,6 +61,7 @@ export default defineComponent({
 		PropsTable,
 	},
 	setup() {
+		initHotKeys();
 		const store = useStore<GlobalDataProps>();
 		const components = computed(() => {
 			return store.state.editor.components;
