@@ -9,6 +9,16 @@
 		:class="{ active: active }"
 	>
 		<slot></slot>
+		<div class="pointer">
+			<div class="nw"></div>
+			<div class="ne"></div>
+			<div
+				@mousedown="control"
+				class="se"
+			>2</div>
+			<div class="sw"></div>
+		</div>
+
 	</div>
 </template>
 
@@ -89,12 +99,17 @@ export default defineComponent({
 			document.addEventListener("mouseup", handleMoveUp);
 		};
 
+		const control = (e: MouseEvent) => {
+			console.log(e);
+		};
+
 		return {
 			onItemClick,
 			styles,
 			editWrapper,
 			startMove,
 			gap,
+			control,
 		};
 	},
 });
@@ -114,8 +129,50 @@ export default defineComponent({
 	border: 1px dashed #ccc;
 }
 .edit-wrapper.active {
-	border: 0.1px solid rebeccapurple;
+	border: 1px solid rebeccapurple;
 	user-select: none;
 	z-index: 1500;
+	box-sizing: content-box !important;
+}
+.edit-wrapper.active > .pointer > .nw {
+	top: -5px;
+	left: -5px;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background-color: aquamarine;
+	border-radius: 50%;
+	cursor: nw-resize;
+}
+
+.edit-wrapper.active > .pointer > .ne {
+	top: -5px;
+	right: -5px;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background-color: aquamarine;
+	border-radius: 50%;
+	cursor: ne-resize;
+}
+.edit-wrapper.active > .pointer > .sw {
+	bottom: -5px;
+	left: -5px;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background-color: aquamarine;
+	border-radius: 50%;
+	cursor: sw-resize;
+}
+.edit-wrapper.active > .pointer > .se {
+	bottom: -5px;
+	right: -5px;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background-color: aquamarine;
+	border-radius: 50%;
+	cursor: se-resize;
 }
 </style>
