@@ -114,7 +114,7 @@ export default defineComponent({
 	border: 1px dashed #ccc;
 }
 .edit-wrapper.active {
-	border: 2px solid rebeccapurple;
+	border: 0.1px solid rebeccapurple;
 	user-select: none;
 	z-index: 1500;
 }

@@ -11,13 +11,14 @@ export const defaultTextTemplates = [
     backgroundColor: "#cccccc",
     width: "100px",
     height: "100px",
-    borderRadius: '2px',
+    borderRadius: '50%',
     fontFamily: "无",
     left: "10px",
     top: "0px",
     position: "absolute"
 
   }
+
 
 
 ]
