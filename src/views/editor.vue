@@ -13,6 +13,7 @@
 		>
 			<edit-wrapper
 				@update-position="updataPosition"
+				@update-shape="updataShape"
 				@setActive="setActive"
 				v-for="component in components"
 				:key="component.id"
@@ -82,9 +83,27 @@ export default defineComponent({
 			id: string;
 		}) => {
 			const { left, top, id } = data;
-			console.log(left, top);
+			//console.log(left, top);
 			store.commit("updateComponent", { key: "left", value: left + "px", id });
 			store.commit("updateComponent", { key: "top", value: top + "px", id });
+		};
+		const updataShape = (data: {
+			width: string;
+			height: string;
+			id: string;
+		}) => {
+			const { width, height, id } = data;
+			//console.log(width, height, id);
+			store.commit("updateComponent", {
+				key: "width",
+				value: width,
+				id,
+			});
+			store.commit("updateComponent", {
+				key: "height",
+				value: height,
+				id,
+			});
 		};
 
 		return {
@@ -95,6 +114,7 @@ export default defineComponent({
 			setActive,
 			handleChange,
 			updataPosition,
+			updataShape,
 		};
 	},
 });

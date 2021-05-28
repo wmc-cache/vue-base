@@ -13,9 +13,9 @@
 			<div class="nw"></div>
 			<div class="ne"></div>
 			<div
-				@mousedown="control"
+				@mousedown.stop="control"
 				class="se"
-			>2</div>
+			></div>
 			<div class="sw"></div>
 		</div>
 
@@ -41,7 +41,7 @@ export default defineComponent({
 			type: Object,
 		},
 	},
-	emits: ["set-active", "update-position"],
+	emits: ["set-active", "update-position", "update-shape"],
 	setup(props, context) {
 		const editWrapper = ref<null | HTMLElement>(null);
 		const store = useStore<GlobalDataProps>();
@@ -51,7 +51,6 @@ export default defineComponent({
 		const onItemClick = (id: string) => {
 			context.emit("set-active", id);
 		};
-
 		const gap = { x: 0, y: 0 };
 		let isMoving = false;
 		const caculateMovePosition = (e: MouseEvent) => {
@@ -60,9 +59,9 @@ export default defineComponent({
 			const top = e.clientY - gap.y - content.offsetTop;
 			return { left, top };
 		};
+		//控制移动
 		const startMove = (e: MouseEvent) => {
 			const currentElement = editWrapper.value;
-			//console.log(editWrapper.value?.getAttribute("data-id"));
 			if (
 				editWrapper.value?.getAttribute("data-id") !=
 				store.state.editor.currentElement
@@ -87,7 +86,6 @@ export default defineComponent({
 				document.removeEventListener("mousemove", handleMove);
 				if (isMoving) {
 					const { left, top } = caculateMovePosition(e);
-
 					context.emit("update-position", { left, top, id: props.id });
 					isMoving = false;
 				}
@@ -98,9 +96,37 @@ export default defineComponent({
 			document.addEventListener("mousemove", handleMove);
 			document.addEventListener("mouseup", handleMoveUp);
 		};
+		//
+		const control = () => {
+			const currentElement = editWrapper.value;
 
-		const control = (e: MouseEvent) => {
-			console.log(e);
+			const handleMove = (e: MouseEvent) => {
+				isMoving = true;
+				if (currentElement) {
+					currentElement.style.width =
+						e.clientX - currentElement.getBoundingClientRect().left + "px";
+					currentElement.style.height =
+						e.clientY - currentElement.getBoundingClientRect().top + "px";
+				}
+			};
+			const handleMoveUp = () => {
+				document.removeEventListener("mousemove", handleMove);
+				if (isMoving) {
+					if (currentElement) {
+						console.log("up");
+						const width = currentElement.style.width;
+						const height = currentElement.style.height;
+						context.emit("update-shape", { width, height, id: props.id });
+					}
+					isMoving = false;
+				}
+				nextTick(() => {
+					document.removeEventListener("mouseup", handleMoveUp);
+				});
+			};
+
+			document.addEventListener("mousemove", handleMove);
+			document.addEventListener("mouseup", handleMoveUp);
 		};
 
 		return {
@@ -122,8 +148,10 @@ export default defineComponent({
 	border: 1px solid transparent;
 	user-select: none;
 }
-.edit-wrapper > * {
+.edit-wrapper > .l-text-component {
 	position: static !important;
+	width: 100% !important;
+	height: 100% !important;
 }
 .edit-wrapper:hover {
 	border: 1px dashed #ccc;
