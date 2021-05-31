@@ -1,6 +1,7 @@
 import { Module } from 'vuex'
-import { v4 as uuidv4 } from 'uuid'
 import { GlobalDataProps } from './index'
+import { v4 as uuidv4 } from 'uuid'
+import { cloneDeep } from "lodash-es"
 import { TextComponentProps, ImageComponentProps } from '../../defaultProps'
 export interface EditorProps {
   // 供中间编辑器渲染的数组
@@ -29,6 +30,7 @@ const editor: Module<EditorProps, GlobalDataProps> = {
     components: testComponents,
     currentElement: ''
   },
+
   mutations: {
     addComponent(state, component: ComponentData) {
       state.components.push(component)
@@ -47,6 +49,14 @@ const editor: Module<EditorProps, GlobalDataProps> = {
       if (copiedComponent) {
         state.copiedComponent = copiedComponent
       }
+    },
+    pasteCopiesComponent(state) {
+      if (state.copiedComponent) {
+        const clone = cloneDeep(state.copiedComponent)
+        clone.id = uuidv4()
+        state.components.push(clone)
+      }
+
     }
 
   },
