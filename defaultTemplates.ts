@@ -14,7 +14,7 @@ export const defaultTextTemplates = [
     borderRadius: '50%',
     fontFamily: "无",
     left: "10px",
-    top: "0px",
+    top: "100px",
     position: "absolute"
 
   },

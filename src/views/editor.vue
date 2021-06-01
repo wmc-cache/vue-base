@@ -128,6 +128,8 @@ export default defineComponent({
 }
 .left {
 	width: 20vw;
+	display: flex;
+	flex-direction: column;
 	background-color: aliceblue;
 }
 .middle {

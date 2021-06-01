@@ -7,6 +7,12 @@
 			style="width:300px;height:300px"
 			id="container"
 		></div>
+
+		<w-token-img
+			token=""
+			style="width:100px;height:100px"
+			authSrc="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F035%2F063%2F726%2F3ea4031f045945e1843ae5156749d64c.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1625122427&t=97156690f90e7a94974ccde1f9895f21"
+		></w-token-img>
 		<w-form>
 			<w-input
 				:errorMessageStyle="errorMessageStyle"
@@ -36,6 +42,7 @@ import { defineComponent, ref, computed } from "vue";
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
 import useMousePosition from "../hooks/useMousePosition";
+
 export default defineComponent({
 	name: "Home",
 	components: {

@@ -3,6 +3,16 @@ import { GlobalDataProps } from './index'
 import { v4 as uuidv4 } from 'uuid'
 import { cloneDeep } from "lodash-es"
 import { TextComponentProps, ImageComponentProps } from '../../defaultProps'
+
+export interface HistoryProps {
+  id: string;
+  componentId: string;
+  type: 'add' | 'delete' | 'modify';
+  data: any;
+  index?: number;
+
+}
+
 export interface EditorProps {
   // 供中间编辑器渲染的数组
   components: ComponentData[];
@@ -10,6 +20,8 @@ export interface EditorProps {
   currentElement: string;
   // 当然最后保存的时候还有有一些项目信息，这里并没有写出，等做到的时候再补充
   copiedComponent?: ComponentData;
+  histories: HistoryProps[];
+  historyIndex: number;
 }
 export interface ComponentData {
   // 这个元素的 属性，属性请详见下面
@@ -28,12 +40,20 @@ export const testComponents: ComponentData[] = [
 const editor: Module<EditorProps, GlobalDataProps> = {
   state: {
     components: testComponents,
-    currentElement: ''
+    currentElement: '',
+    histories: [],
+    historyIndex: -1
   },
 
   mutations: {
     addComponent(state, component: ComponentData) {
       state.components.push(component)
+      state.histories.push({
+        id: uuidv4(),
+        componentId: component.id,
+        type: "add",
+        data: cloneDeep(component)
+      })
     },
     setActive(state, currentId: string) {
       state.currentElement = currentId
@@ -55,7 +75,25 @@ const editor: Module<EditorProps, GlobalDataProps> = {
         const clone = cloneDeep(state.copiedComponent)
         clone.id = uuidv4()
         state.components.push(clone)
+        state.histories.push({
+          id: uuidv4(),
+          componentId: clone.id,
+          type: "add",
+          data: cloneDeep(clone)
+        })
       }
+
+    },
+    deleteComponent(state, id: string) {
+      const currentComponent = state.components.find((component) => component.id === id)
+      if (currentComponent) {
+        state.components = state.components.filter((component) => component !== currentComponent)
+      }
+    },
+    cancel(state) {
+      // if (state.histories[0].type = "add") {
+
+      // }
 
     }
 

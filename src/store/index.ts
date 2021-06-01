@@ -13,7 +13,10 @@ const store = createStore({
   }
 })
 //store.commit("user/upDataName", "asd")
-console.log(user.state)
+setInterval(() => {
+  console.log(editor.state)
+}, 5000)
+
 //console.log(user.getters.realName)
 
 

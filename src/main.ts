@@ -12,7 +12,7 @@ import wmcComponents from "wmc-components"
 import "wmc-components/dist/bundle.css"
 
 const app = createApp(App)//根据APP组件创建单页应用
-console.log(process.env)
+//console.log(process.env)
 app.use(router).use(store).use(wmcComponents)
 app.use(Antd)
 app.mount('#app')

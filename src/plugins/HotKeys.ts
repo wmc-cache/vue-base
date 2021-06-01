@@ -2,7 +2,7 @@ import useHotKey from "../hooks/useHotKey"
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
 import { computed } from "vue"
-import hotkeys, { HotkeysEvent, KeyHandler } from "hotkeys-js"
+import { HotkeysEvent, KeyHandler } from "hotkeys-js"
 import { ComponentData } from "@/store/editor";
 
 const wrap = (callback: KeyHandler): KeyHandler => {
@@ -32,6 +32,15 @@ export default function initHotKeys() {
 
   useHotKey('esc', () => {
     store.commit("setActive", "")
+  })
+
+  useHotKey('backspace,delete', () => {
+    store.commit("deleteComponent", currentId.value)
+  })
+
+
+  useHotKey('ctrl+z,command+z', () => {
+    //store.commit("setActive", "")
   })
 
   useHotKey('up', wrap(() => {
