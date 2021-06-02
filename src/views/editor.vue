@@ -6,6 +6,10 @@
 				@onItemClick="addItem"
 				:list="defaultTextTemplates"
 			></components-list>
+			<img
+				id="test"
+				style="width:700px;height:1000px"
+			/>
 		</div>
 		<div
 			id="content"
@@ -37,6 +41,7 @@
 			<pre>
         {{ currentElement && currentElement.props }}
       </pre>
+			<a-button @click="publish">submit</a-button>
 		</div>
 	</div>
 </template>
@@ -52,6 +57,7 @@ import { ComponentData } from "@/store/editor";
 import EditWrapper from "../components/EditWrapper.vue";
 import PropsTable from "../components/PropsTable.vue";
 import initHotKeys from "../plugins/HotKeys";
+import html2canvas from "html2canvas";
 export default defineComponent({
 	name: "Editor",
 	components: {
@@ -61,6 +67,7 @@ export default defineComponent({
 		PropsTable,
 	},
 	setup() {
+		console.log(window.devicePixelRatio);
 		initHotKeys();
 		const store = useStore<GlobalDataProps>();
 		const components = computed(() => {
@@ -108,6 +115,16 @@ export default defineComponent({
 			});
 		};
 
+		const publish = () => {
+			const el = document.getElementById("content") as HTMLElement;
+			html2canvas(el, { width: 375, useCORS: true, scale: 1 }).then(
+				(canvas) => {
+					const img = document.getElementById("test") as HTMLImageElement;
+					img.src = canvas.toDataURL();
+				}
+			);
+		};
+
 		return {
 			components,
 			defaultTextTemplates,
@@ -117,6 +134,7 @@ export default defineComponent({
 			handleChange,
 			updataPosition,
 			updataShape,
+			publish,
 		};
 	},
 });
@@ -142,5 +160,9 @@ export default defineComponent({
 .right {
 	width: 30vw;
 	background-color: bisque;
+}
+
+.middle img {
+	pointer-events: none;
 }
 </style>

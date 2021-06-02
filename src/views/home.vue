@@ -9,7 +9,6 @@
 		></div>
 
 		<w-token-img
-			token=""
 			style="width:100px;height:100px"
 			authSrc="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F035%2F063%2F726%2F3ea4031f045945e1843ae5156749d64c.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1625122427&t=97156690f90e7a94974ccde1f9895f21"
 		></w-token-img>
@@ -21,15 +20,16 @@
 			></w-input>
 		</w-form>
 
-		<input type="color" />
-		<message message="吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成"></message>
+		<message
+			id="tokenImg"
+			message="吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成"
+		></message>
 		<div
 			v-for="component in components"
 			:key="component.id"
 		>
 			{{ component.props.text }}
 		</div>
-		<!-- <div class="css">css</div> -->
 
 	</div>
 </template>
@@ -37,7 +37,6 @@
 <script lang="ts">
 const errorMessageStyle = { color: "yellow", fontSize: "12px" };
 import AMapLoader from "@amap/amap-jsapi-loader";
-import Message from "../components/Message.vue";
 import { defineComponent, ref, computed } from "vue";
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
@@ -45,9 +44,7 @@ import useMousePosition from "../hooks/useMousePosition";
 
 export default defineComponent({
 	name: "Home",
-	components: {
-		Message,
-	},
+	components: {},
 	setup() {
 		AMapLoader.load({
 			key: "2b4552a40e781712b959acbc94c917c9", // 申请好的Web端开发者Key，首次调用 load 时必填

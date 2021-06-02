@@ -33,7 +33,18 @@ export const defaultTextTemplates = [
     top: "0px",
     position: "absolute"
 
-  }
+  },
+  {
+
+    tag: 'img',
+    width: "100px",
+    height: "100px",
+    src: "https://wmc-oss-test.oss-cn-hangzhou.aliyuncs.com/5d43fd5d00010ea604960301.png?versionId=CAEQDxiBgIDG4N.YzRciIDQ2ODdjMjlmNDQ0YzQyNmJhNTE3ZDJlYTBiZmE5MTc0",
+    left: "10px",
+    top: "200px",
+    position: "absolute"
+
+  },
 
 
 
