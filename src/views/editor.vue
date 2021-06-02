@@ -41,6 +41,7 @@
 			<pre>
         {{ currentElement && currentElement.props }}
       </pre>
+			<canvas id="canvas"></canvas>
 			<a-button @click="publish">submit</a-button>
 		</div>
 	</div>

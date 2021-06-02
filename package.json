@@ -17,12 +17,14 @@
     "lodash-es": "^4.17.21",
     "mitt": "^2.1.0",
     "normalize.css": "^8.0.1",
+    "qrcode": "^1.4.4",
     "vue": "^3.0.0",
     "vue-router": "^4.0.5",
     "vuex": "^4.0.0",
     "wmc-components": "1.0.19"
   },
   "devDependencies": {
+    "@types/qrcode": "^1.4.0",
     "@types/jest": "^24.0.19",
     "@types/lodash-es": "^4.17.4",
     "@types/uuid": "^8.3.0",
