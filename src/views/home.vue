@@ -1,5 +1,10 @@
 <template>
 	<div>
+		<div
+			style="width:300px;height:300px;background-color:red"
+			ref="joyRef"
+		></div>
+
 		<div>
 			{{ position }}
 		</div>
@@ -37,15 +42,30 @@
 <script lang="ts">
 const errorMessageStyle = { color: "yellow", fontSize: "12px" };
 import AMapLoader from "@amap/amap-jsapi-loader";
-import { defineComponent, ref, computed } from "vue";
+import { defineComponent, ref, computed, nextTick, onMounted } from "vue";
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
 import useMousePosition from "../hooks/useMousePosition";
+import nipplejs from "nipplejs";
 
 export default defineComponent({
 	name: "Home",
 	components: {},
 	setup() {
+		const joyRef = ref<null | HTMLElement>(null);
+		onMounted(() => {
+			const options: object = {
+				mode: "semi", // 'dynamic', 'static' or 'semi'
+				size: 150,
+				position: {
+					left: "150px",
+					top: "150px",
+				}, //在容器内垂直居中显示
+				zone: joyRef.value, //如果不提提供zone容器元素，那么默认动态生成的元素是注入在body中的。
+			};
+			const manager = nipplejs.create(options);
+		});
+
 		AMapLoader.load({
 			key: "2b4552a40e781712b959acbc94c917c9", // 申请好的Web端开发者Key，首次调用 load 时必填
 			version: "1.4.15", // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
@@ -103,6 +123,7 @@ export default defineComponent({
 			position,
 			formSubmitResult,
 			errorMessageStyle,
+			joyRef,
 		};
 	},
 });
