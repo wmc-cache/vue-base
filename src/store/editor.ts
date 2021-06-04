@@ -10,7 +10,6 @@ export interface HistoryProps {
   type: 'add' | 'delete' | 'modify';
   data: any;
   index?: number;
-
 }
 
 export interface EditorProps {
@@ -86,16 +85,11 @@ const editor: Module<EditorProps, GlobalDataProps> = {
     },
     deleteComponent(state, id: string) {
       const currentComponent = state.components.find((component) => component.id === id)
+      console.log("delete", id)
       if (currentComponent) {
         state.components = state.components.filter((component) => component !== currentComponent)
       }
     },
-    cancel(state) {
-      // if (state.histories[0].type = "add") {
-
-      // }
-
-    }
 
   },
   getters: {

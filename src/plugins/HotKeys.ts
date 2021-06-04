@@ -38,9 +38,12 @@ export default function initHotKeys() {
     store.commit("deleteComponent", currentId.value)
   })
 
-
+  //撤销重做
   useHotKey('ctrl+z,command+z', () => {
-    //store.commit("setActive", "")
+    if (store.state.editor.histories[0].type == "add") {
+      //console.log("add", store.state.editor.histories[0].componentId)
+      store.commit("deleteComponent", store.state.editor.histories[0].componentId)
+    }
   })
 
   useHotKey('up', wrap(() => {
