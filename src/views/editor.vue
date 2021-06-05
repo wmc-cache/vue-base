@@ -1,15 +1,14 @@
 
 <template>
 	<div class="content">
+
 		<div class="left">
 			<components-list
 				@onItemClick="addItem"
 				:list="defaultTextTemplates"
 			></components-list>
-			<img
-				id="test"
-				style="width:700px;height:1000px"
-			/>
+			<a-button @click="publish">submit</a-button>
+
 		</div>
 		<div
 			id="content"
@@ -33,7 +32,11 @@
 		</div>
 
 		<div class="right">
-			<props-table
+			<img
+				id="test"
+				style="width:30vw;height:100vh"
+			/>
+			<!-- <props-table
 				v-if="currentElement && currentElement.props"
 				:props="currentElement.props"
 				@change="handleChange"
@@ -41,8 +44,8 @@
 			<pre>
         {{ currentElement && currentElement.props }}
       </pre>
-			<canvas id="canvas"></canvas>
-			<a-button @click="publish">submit</a-button>
+			<canvas id="canvas"></canvas> -->
+
 		</div>
 	</div>
 </template>
@@ -68,7 +71,8 @@ export default defineComponent({
 		PropsTable,
 	},
 	setup() {
-		console.log(window.devicePixelRatio);
+		console.log(WText);
+		//console.log(window.devicePixelRatio);
 		initHotKeys();
 		const store = useStore<GlobalDataProps>();
 		const components = computed(() => {
@@ -160,7 +164,7 @@ export default defineComponent({
 }
 .right {
 	width: 30vw;
-	background-color: bisque;
+	//background-color: bisque;
 }
 
 .middle img {

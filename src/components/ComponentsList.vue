@@ -18,6 +18,7 @@ import WText from "../components/WText.vue";
 import { v4 as uuidv4 } from "uuid";
 import { ComponentData } from "../store/editor";
 import { TextComponentProps } from "../../defaultProps";
+import { cloneDeep } from "lodash-es";
 export default defineComponent({
 	props: {
 		list: {
@@ -32,8 +33,7 @@ export default defineComponent({
 	},
 	setup(props, context) {
 		const onItemClick = (props: TextComponentProps) => {
-			props = JSON.parse(JSON.stringify(props)); //深拷贝
-
+			props = cloneDeep(props); //深拷贝
 			const componentData: ComponentData = {
 				name: "w-text",
 				id: uuidv4(),

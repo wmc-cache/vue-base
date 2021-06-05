@@ -7,6 +7,7 @@ import { ComponentData } from "@/store/editor";
 
 const wrap = (callback: KeyHandler): KeyHandler => {
   const wrapFunction = (e: KeyboardEvent, event: HotkeysEvent) => {
+    console.log("e.preventDefault()")
     e.preventDefault()
     callback(e, event)
   }
@@ -41,7 +42,6 @@ export default function initHotKeys() {
   //撤销重做
   useHotKey('ctrl+z,command+z', () => {
     if (store.state.editor.histories[0].type == "add") {
-      //console.log("add", store.state.editor.histories[0].componentId)
       store.commit("deleteComponent", store.state.editor.histories[0].componentId)
     }
   })

@@ -4,7 +4,13 @@
 			style="width:300px;height:300px;background-color:red"
 			ref="joyRef"
 		></div>
-
+		<!-- <div
+			v-for="item in fontFamilyArr"
+			:key="item.value"
+		>
+			<div :style="{fontFamily:item.value}">{{item.text}}</div>
+		</div> -->
+		<tsx></tsx>
 		<div>
 			{{ position }}
 		</div>
@@ -42,15 +48,22 @@
 <script lang="ts">
 const errorMessageStyle = { color: "yellow", fontSize: "12px" };
 import AMapLoader from "@amap/amap-jsapi-loader";
-import { defineComponent, ref, computed, nextTick, onMounted } from "vue";
+import { defineComponent, ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
 import useMousePosition from "../hooks/useMousePosition";
 import nipplejs from "nipplejs";
+import tsx from "../components/tsx";
 
+const fontFamilyArr = [
+	{ text: "宋体", value: '"SimSun","STSong"' },
+	{ text: "黑体", value: '"SimHei","STHeiti"' },
+	{ text: "楷体", value: '"KaiTi","STKaiti"' },
+	{ text: "仿宋", value: '"FangSong","STFangsong"' },
+];
 export default defineComponent({
 	name: "Home",
-	components: {},
+	components: { tsx },
 	setup() {
 		const joyRef = ref<null | HTMLElement>(null);
 		onMounted(() => {
@@ -63,7 +76,7 @@ export default defineComponent({
 				}, //在容器内垂直居中显示
 				zone: joyRef.value, //如果不提提供zone容器元素，那么默认动态生成的元素是注入在body中的。
 			};
-			const manager = nipplejs.create(options);
+			nipplejs.create(options);
 		});
 
 		AMapLoader.load({
@@ -124,6 +137,7 @@ export default defineComponent({
 			formSubmitResult,
 			errorMessageStyle,
 			joyRef,
+			fontFamilyArr,
 		};
 	},
 });

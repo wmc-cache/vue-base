@@ -14,7 +14,7 @@ export const defaultTextTemplates = [
     borderRadius: '50%',
     fontFamily: "无",
     left: "10px",
-    top: "100px",
+    top: "200px",
     position: "absolute"
 
   },
@@ -30,7 +30,7 @@ export const defaultTextTemplates = [
     borderRadius: '5px',
     fontFamily: "无",
     left: "10px",
-    top: "0px",
+    top: "100px",
     position: "absolute"
 
   },
@@ -41,7 +41,7 @@ export const defaultTextTemplates = [
     height: "100px",
     src: "https://wmc-oss-test.oss-cn-hangzhou.aliyuncs.com/5d43fd5d00010ea604960301.png?versionId=CAEQDxiBgIDG4N.YzRciIDQ2ODdjMjlmNDQ0YzQyNmJhNTE3ZDJlYTBiZmE5MTc0",
     left: "10px",
-    top: "200px",
+    top: "300px",
     position: "absolute"
 
   },
