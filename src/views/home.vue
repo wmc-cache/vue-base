@@ -1,9 +1,13 @@
 <template>
 	<div>
-		<div
-			style="width:300px;height:300px;background-color:red"
-			ref="joyRef"
-		></div>
+		<div>
+			<div
+				style="width:300px;height:300px;background-color:red"
+				ref="joyRef"
+			></div>
+			<div></div>
+		</div>
+
 		<!-- <div
 			v-for="item in fontFamilyArr"
 			:key="item.value"
@@ -19,10 +23,15 @@
 			id="container"
 		></div>
 
-		<w-token-img
-			style="width:100px;height:100px"
-			authSrc="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F035%2F063%2F726%2F3ea4031f045945e1843ae5156749d64c.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1625122427&t=97156690f90e7a94974ccde1f9895f21"
-		></w-token-img>
+		<div>
+			<w-token-img
+				ref="img"
+				style="width:100px;height:100px"
+				authSrc="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F035%2F063%2F726%2F3ea4031f045945e1843ae5156749d64c.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1625122427&t=97156690f90e7a94974ccde1f9895f21"
+			></w-token-img>
+			<div></div>
+		</div>
+
 		<w-form>
 			<w-input
 				:errorMessageStyle="errorMessageStyle"
@@ -54,6 +63,7 @@ import { GlobalDataProps } from "../store/index";
 import useMousePosition from "../hooks/useMousePosition";
 import nipplejs from "nipplejs";
 import tsx from "../components/tsx";
+import { useSwapNode } from "wmc-components";
 
 const fontFamilyArr = [
 	{ text: "宋体", value: '"SimSun","STSong"' },
@@ -65,7 +75,9 @@ export default defineComponent({
 	name: "Home",
 	components: { tsx },
 	setup() {
-		const joyRef = ref<null | HTMLElement>(null);
+		const joyRef = ref();
+		const img = ref();
+		useSwapNode();
 		onMounted(() => {
 			const options: object = {
 				mode: "semi", // 'dynamic', 'static' or 'semi'
@@ -138,6 +150,7 @@ export default defineComponent({
 			errorMessageStyle,
 			joyRef,
 			fontFamilyArr,
+			img,
 		};
 	},
 });

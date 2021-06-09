@@ -71,7 +71,6 @@ export default defineComponent({
 		PropsTable,
 	},
 	setup() {
-		console.log(WText);
 		//console.log(window.devicePixelRatio);
 		initHotKeys();
 		const store = useStore<GlobalDataProps>();
@@ -119,7 +118,6 @@ export default defineComponent({
 				id,
 			});
 		};
-
 		const publish = () => {
 			const el = document.getElementById("content") as HTMLElement;
 			html2canvas(el, { width: 375, useCORS: true, scale: 1 }).then(
