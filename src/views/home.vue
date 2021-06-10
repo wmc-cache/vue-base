@@ -40,17 +40,6 @@
 			></w-input>
 		</w-form>
 
-		<message
-			id="tokenImg"
-			message="吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成吴梦成"
-		></message>
-		<div
-			v-for="component in components"
-			:key="component.id"
-		>
-			{{ component.props.text }}
-		</div>
-
 	</div>
 </template>
 
