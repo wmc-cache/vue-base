@@ -52,7 +52,7 @@ import { GlobalDataProps } from "../store/index";
 import useMousePosition from "../hooks/useMousePosition";
 import nipplejs from "nipplejs";
 import tsx from "../components/tsx";
-import { useSwapNode } from "wmc-components";
+import { http } from "wmc-components";
 
 const fontFamilyArr = [
 	{ text: "宋体", value: '"SimSun","STSong"' },
@@ -66,7 +66,9 @@ export default defineComponent({
 	setup() {
 		const joyRef = ref();
 		const img = ref();
-		useSwapNode();
+		http({
+			url: "https://www.baidu.com",
+		});
 		onMounted(() => {
 			const options: object = {
 				mode: "semi", // 'dynamic', 'static' or 'semi'
