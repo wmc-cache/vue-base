@@ -1,46 +1,40 @@
 <template>
-	<div>
-		<div>
-			<div
-				style="width:300px;height:300px;background-color:red"
-				ref="joyRef"
-			></div>
-			<div></div>
-		</div>
 
-		<!-- <div
+	<tsx></tsx>
+	<div>
+		{{ position }}
+	</div>
+	<div
+		style="width:300px;height:300px"
+		id="container"
+	></div>
+	<div
+		style="width:300px;height:300px;background-color:red"
+		ref="joyRef"
+	></div>
+	<div ref="img">
+		<w-token-img
+			style="width:100px;height:100px"
+			authSrc="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F035%2F063%2F726%2F3ea4031f045945e1843ae5156749d64c.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1625122427&t=97156690f90e7a94974ccde1f9895f21"
+		></w-token-img>
+
+	</div>
+
+	<w-form>
+		<w-input
+			:errorMessageStyle="errorMessageStyle"
+			:rules="inputRules"
+			v-model:value="inputValueRef"
+		></w-input>
+	</w-form>
+
+	<!-- <div
 			v-for="item in fontFamilyArr"
 			:key="item.value"
 		>
 			<div :style="{fontFamily:item.value}">{{item.text}}</div>
 		</div> -->
-		<tsx></tsx>
-		<div>
-			{{ position }}
-		</div>
-		<div
-			style="width:300px;height:300px"
-			id="container"
-		></div>
 
-		<div>
-			<w-token-img
-				ref="img"
-				style="width:100px;height:100px"
-				authSrc="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F035%2F063%2F726%2F3ea4031f045945e1843ae5156749d64c.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1625122427&t=97156690f90e7a94974ccde1f9895f21"
-			></w-token-img>
-			<div></div>
-		</div>
-
-		<w-form>
-			<w-input
-				:errorMessageStyle="errorMessageStyle"
-				:rules="inputRules"
-				v-model:value="inputValueRef"
-			></w-input>
-		</w-form>
-
-	</div>
 </template>
 
 <script lang="ts">
@@ -52,7 +46,7 @@ import { GlobalDataProps } from "../store/index";
 import useMousePosition from "../hooks/useMousePosition";
 import nipplejs from "nipplejs";
 import tsx from "../components/tsx";
-import { http } from "wmc-components";
+import { http, swapHtmlElement } from "wmc-components";
 
 const fontFamilyArr = [
 	{ text: "宋体", value: '"SimSun","STSong"' },
@@ -66,10 +60,12 @@ export default defineComponent({
 	setup() {
 		const joyRef = ref();
 		const img = ref();
+
 		http({
 			url: "https://www.baidu.com",
 		});
 		onMounted(() => {
+			//swapHtmlElement(joyRef.value, img.value);
 			const options: object = {
 				mode: "semi", // 'dynamic', 'static' or 'semi'
 				size: 150,
