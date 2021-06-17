@@ -1,8 +1,8 @@
 <template>
-	<button @click="swap">swap</button>
+	<!-- <button @click="swap">swap</button>
 	<div id="div1">1</div>
 	<div></div>
-	<div id="div2">2</div>
+	<div id="div2">2</div> -->
 
 	<router-view></router-view>
 

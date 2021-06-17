@@ -46,7 +46,7 @@ import { GlobalDataProps } from "../store/index";
 import useMousePosition from "../hooks/useMousePosition";
 import nipplejs from "nipplejs";
 import tsx from "../components/tsx";
-import { http, swapHtmlElement } from "wmc-components";
+import { http } from "wmc-components";
 
 const fontFamilyArr = [
 	{ text: "宋体", value: '"SimSun","STSong"' },
