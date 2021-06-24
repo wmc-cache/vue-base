@@ -10,18 +10,18 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { swapHtmlElement } from "wmc-components";
+//import { swapHtmlElement } from "wmc-components";
 export default defineComponent({
 	name: "App",
 	setup() {
-		const swap = () => {
-			swapHtmlElement(
-				document.getElementById("div1") as HTMLElement,
-				document.getElementById("div2") as HTMLElement
-			);
-		};
+		// const swap = () => {
+		// 	swapHtmlElement(
+		// 		document.getElementById("div1") as HTMLElement,
+		// 		document.getElementById("div2") as HTMLElement
+		// 	);
+		// };
 
-		return { swap };
+		return {};
 	},
 });
 </script>

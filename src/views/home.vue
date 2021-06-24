@@ -1,17 +1,19 @@
 <template>
-
-	<tsx></tsx>
-	<div>
-		{{ position }}
+	<div
+		style="width:300px;height:300px;background-color:red"
+		ref="joyRef"
+	>
+		<div>
+			{{ 	degree }}
+		</div>
 	</div>
+	<tsx></tsx>
+
 	<div
 		style="width:300px;height:300px"
 		id="container"
 	></div>
-	<div
-		style="width:300px;height:300px;background-color:red"
-		ref="joyRef"
-	></div>
+
 	<div ref="img">
 		<w-token-img
 			style="width:100px;height:100px"
@@ -40,13 +42,13 @@
 <script lang="ts">
 const errorMessageStyle = { color: "yellow", fontSize: "12px" };
 import AMapLoader from "@amap/amap-jsapi-loader";
-import { defineComponent, ref, computed, onMounted } from "vue";
+import { defineComponent, ref, computed, onMounted, reactive } from "vue";
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
 import useMousePosition from "../hooks/useMousePosition";
 import nipplejs from "nipplejs";
 import tsx from "../components/tsx";
-import { http } from "wmc-components";
+import { http, WTokenImg, WInput, WForm } from "wmc-components";
 
 const fontFamilyArr = [
 	{ text: "宋体", value: '"SimSun","STSong"' },
@@ -56,18 +58,17 @@ const fontFamilyArr = [
 ];
 export default defineComponent({
 	name: "Home",
-	components: { tsx },
+	components: { tsx, WTokenImg, WInput, WForm },
 	setup() {
 		const joyRef = ref();
 		const img = ref();
-
+		const degree = ref();
 		http({
 			url: "https://www.baidu.com",
 		});
 		onMounted(() => {
-			//swapHtmlElement(joyRef.value, img.value);
 			const options: object = {
-				mode: "semi", // 'dynamic', 'static' or 'semi'
+				mode: "static", // 'dynamic', 'static' or 'semi'
 				size: 150,
 				position: {
 					left: "150px",
@@ -75,7 +76,16 @@ export default defineComponent({
 				}, //在容器内垂直居中显示
 				zone: joyRef.value, //如果不提提供zone容器元素，那么默认动态生成的元素是注入在body中的。
 			};
-			nipplejs.create(options);
+			const data = nipplejs.create(options);
+			data.on("move", function (evt, data) {
+				degree.value = data.angle.degree;
+				console.log(data);
+				// if (data.direction) {
+				// 	const angle = data.direction.angle;
+				// 	const distance = data.distance;
+				// 	console.log(angle, distance);
+				// }
+			});
 		});
 
 		AMapLoader.load({
@@ -138,6 +148,7 @@ export default defineComponent({
 			joyRef,
 			fontFamilyArr,
 			img,
+			degree,
 		};
 	},
 });

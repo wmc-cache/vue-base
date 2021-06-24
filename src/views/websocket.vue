@@ -28,14 +28,14 @@
 </template>
 
 <script lang="ts">
-let name;
-let roomId;
+let name: string;
+let roomId: string;
 import { defineComponent, ref } from "vue";
 export default defineComponent({
 	name: "WebSocket",
 	setup() {
 		const ws = new WebSocket("ws://localhost:4200");
-		const message = ref([]);
+		const message = ref<string[]>([]);
 		const isShow = ref(true);
 		const input = ref();
 		const messageInput = ref();
